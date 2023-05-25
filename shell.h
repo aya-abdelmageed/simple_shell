@@ -37,7 +37,7 @@
 extern char **environ;
 
 
-
+/*
  * struct liststr - singly linked list
  * @num: the number field
  * @str: a string
@@ -50,7 +50,7 @@ typedef struct liststr
 	struct liststr *next;
 } list_t;
 
-
+/*
  * struct passinfo - contains pseudo-arguements to pass into a function,
  * allowing uniform prototype for function pointer struct
  * @arg: a string generated from getline containing arguements
@@ -96,11 +96,12 @@ typedef struct passinfo
 } info_t;
 
 #define INFO_INIT \
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,\
 		0, 0, 0}
 
 /**
  * struct builtin - contains a builtin string and related function
+ * A
  * @type: the builtin command flag
  * @func: the function
  */
@@ -153,7 +154,7 @@ char **string_split(char *, char *);
 char **split_string(char *, char);
 
 
-char *_memset(char *, char, unsigned int);
+char *_memiset(char *, char, unsigned int);
 void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 

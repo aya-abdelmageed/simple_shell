@@ -1,5 +1,10 @@
 #include "shell.h"
 
+int unset_alias(info_t *data, char *str);
+int _alias(info_t *data);
+int print_alias(list_t *node);
+int set_alias(info_t *data, char *str);
+
 /**
  * set_alias - sets alias to the string
  * @data: struct

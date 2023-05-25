@@ -60,7 +60,7 @@ list_t *add_node(list_t **head, const char *str, int num)
 	if (!node_h)
 		return (NULL);
 
-	_memset((void *)node_h, 0, sizeof(list_t));
+	_memiset((void *)node_h, 0, sizeof(list_t));
 	node_h->num = num;
 
 	if (str)
@@ -97,7 +97,7 @@ list_t *add_node_from_end(list_t **head, const char *str, int num)
 	new_n = malloc(sizeof(list_t));
 	if (!new_n)
 		return (NULL);
-	_memset((void *)new_n, 0, sizeof(list_t));
+	_memiset((void *)new_n, 0, sizeof(list_t));
 	new_n->num = num;
 	if (str)
 	{

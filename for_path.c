@@ -58,9 +58,9 @@ char *char_duplicates(char *pathstr, int start, int stop)
 	static char buff[1024];
 	int j = 0, x = 0;
 
-	for (k = 0, j = start; j < stop; j++)
+	for (x = 0, j = start; j < stop; j++)
 		if (pathstr[j] != ':')
-			buf[x++] = pathstr[j];
+			buff[x++] = pathstr[j];
 	buff[x] = 0;
 	return (buff);
 }

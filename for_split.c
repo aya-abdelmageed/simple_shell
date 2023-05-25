@@ -17,7 +17,7 @@ char **string_split(char *str, char *d)
 	if (!d)
 		d = " ";
 
-	for (a = 0; str[i] != '\0'; a++)
+	for (a = 0; str[a] != '\0'; a++)
 		if (!check_delim(str[a], d) && (check_delim(str[a + 1], d) || !str[a + 1]))
 			count_words++;
 

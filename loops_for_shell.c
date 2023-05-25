@@ -42,7 +42,7 @@ int builtin_finder(info_t *data)
  * Return: void
  */
 
-void cmd_fork(data_t *data)
+void cmd_fork(info_t *data)
 {
 	pid_t childPid;
 
