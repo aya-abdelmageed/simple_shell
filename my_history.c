@@ -2,33 +2,33 @@
 
 /**
  * history_build_list - for adding to the history linked list
- * @info: argu to maintain
+ * @data: argu to maintain
  * @buf: the buffer
  * @linecount: linecount and histcount
  * Return: 0
  */
-int history_build_list(info_t *info, char *buf, int linecount)
+int history_build_list(info_t *data, char *buf, int linecount)
 {
 	list_t *p = NULL;
 
-	if (info->history)
-		p = info->history;
+	if (data->history)
+		p = data->history;
 	add_node_from_end(&p, buf, linecount);
 
-	if (!info->history)
-		info->history = p;
+	if (!data->history)
+		data->history = p;
 	return (0);
 }
 
 /**
  * history_writes - creates or appends file
- * @info: struct
+ * @data: struct
  * Return: 1 or -1
  */
-int history_writes(info_t *info)
+int history_writes(info_t *data)
 {
 	ssize_t d;
-	char *file_name = get_history_file(info);
+	char *file_name = get_history_file(data);
 	list_t *p = NULL;
 
 	if (!file_name)
@@ -38,7 +38,7 @@ int history_writes(info_t *info)
 	free(file_name);
 	if (d == -1)
 		return (-1);
-	for (p = info->history; p; p = p->next)
+	for (p = data->history; p; p = p->next)
 	{
 		_putsfd(p->str, d);
 		_putfd('\n', d);
@@ -50,15 +50,15 @@ int history_writes(info_t *info)
 
 /**
  * history_reads - for reading from file
- * @info: struct
+ * @data: struct
  * Return: histcount or 0
  */
-int history_reads(info_t *info)
+int history_reads(info_t *data)
 {
 	int j, end = 0, linecount = 0;
 	ssize_t d, rdlen, size = 0;
 	struct stat s;
-	char *buff = NULL, *file_name = get_history_file(info);
+	char *buff = NULL, *file_name = get_history_file(data);
 
 	if (!file_name)
 		return (0);
@@ -83,27 +83,27 @@ int history_reads(info_t *info)
 		if (buff[j] == '\n')
 		{
 			buff[j] = 0;
-			history_build_list(info, buff + end, linecount++);
+			history_build_list(data, buff + end, linecount++);
 			end = j + 1;
 		}
 	if (end != j)
-		history_build_list(info, buff + end, linecount++);
+		history_build_list(data, buff + end, linecount++);
 	free(buff);
-	info->histcount = linecount;
-	while (info->histcount-- >= HIST_MAX)
-		delete_node_at_index(&(info->history), 0);
-	recount_history(info);
-	return (info->histcount);
+	data->histcount = linecount;
+	while (data->histcount-- >= HIST_MAX)
+		delete_node_at_index(&(data->history), 0);
+	recount_history(data);
+	return (data->histcount);
 }
 
 /**
  * recount_history - recount the history linked list
- * @info: to maintain
+ * @data: to maintain
  * Return: new histcount
  */
-int recount_history(info_t *info)
+int recount_history(info_t *data)
 {
-	list_t *nd = info->history;
+	list_t *nd = data->history;
 	int j = 0;
 
 	while (nd)
@@ -111,20 +111,20 @@ int recount_history(info_t *info)
 		nd->num = j++;
 		nd = nd->next;
 	}
-	return (info->histcount = j);
+	return (data->histcount = j);
 }
 
 /**
  * get_history_of_file - gets the history
- * @info: struct
+ * @data: struct
  * Return: string pointer
  */
 
-char *get_history_of_file(info_t *info)
+char *get_history_of_file(info_t *data)
 {
 	char *buff, *d;
 
-	d = _getenv(info, "HOME=");
+	d = _getenv(data, "HOME=");
 
 	if (!dir)
 		return (NULL);

@@ -12,7 +12,7 @@ int builtin_finder(info_t *data)
 {
 	int j = 0, builtin_ret = -1;
 	builtin_table builtin_tbl[] = {
-		{"exit", _exit},
+		{"exit", _myexit},
 		{"env", _env},
 		{"help", _help},
 		{"history", _history},

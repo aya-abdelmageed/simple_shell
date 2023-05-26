@@ -2,13 +2,13 @@
 
 
 /**
- * _exit - exits the shell with a given exit status
+ * _myexit - exits the shell with a given exit status
  * @data: Structure containing potential arguments. Used to maintain
  * constant function prototype.
  * Return: exits with a given exit status
  * (0) if data.argv[0] != "exit"
  */
-int _exit(info_t *data)
+int _myexit(info_t *data)
 {
 	int checkExit;
 

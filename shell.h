@@ -101,7 +101,6 @@ typedef struct passinfo
 
 /**
  * struct builtin - contains a builtin string and related function
- * A
  * @type: the builtin command flag
  * @func: the function
  */
@@ -110,7 +109,6 @@ typedef struct builtin
 	char *type;
 	int (*func)(info_t *);
 } builtin_table;
-
 
 
 int shell_loop(info_t *, char **);
@@ -175,7 +173,7 @@ char *num_convert(long int, int, int);
 void comments_remover(char *);
 
 
-int _exit(info_t *);
+int _myexit(info_t *);
 int _cd(info_t *);
 int _help(info_t *);
 
@@ -206,11 +204,11 @@ int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
 
-char *get_history_of_file(info_t *info);
-int history_writes(info_t *info);
-int history_reads(info_t *info);
-int history_build_list(info_t *info, char *buf, int linecount);
-int recount_history(info_t *info);
+char *get_history_of_file(info_t *data);
+int history_writes(info_t *data);
+int history_reads(info_t *data);
+int history_build_list(info_t *data, char *buf, int linecount);
+int recount_history(info_t *data);
 
 
 list_t *add_node(list_t **, const char *, int);

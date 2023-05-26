@@ -3,7 +3,7 @@
 
 /**
  * set_data - struct initializer for info_t
- * @info: struct address
+ * @data: struct address
  * @av: argument vector
  */
 void set_data(info_t *data, char **av)
@@ -36,12 +36,12 @@ void set_data(info_t *data, char **av)
  * data_clear - initializes data_t struct
  * @data: struct address
  */
-void data_clear(info_t *info)
+void data_clear(info_t *data)
 {
-	info->arg = NULL;
-	info->argv = NULL;
-	info->path = NULL;
-	info->argc = 0;
+	data->arg = NULL;
+	data->argv = NULL;
+	data->path = NULL;
+	data->argc = 0;
 }
 
 /**

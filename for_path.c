@@ -3,13 +3,13 @@
 
 /**
  * path_finder - to find cmd in the PATH
- * @info: struct for info
+ * @data: struct for data
  * @pathstr: the PATH
  * @cmd: the cmd
  * Return: full path of cmd if found or NULL
  */
 
-char *path_finder(info_t *info, char *pathstr, char *cmd)
+char *path_finder(info_t *data, char *pathstr, char *cmd)
 {
 	int j = 0, curr = 0;
 	char *path;
@@ -18,7 +18,7 @@ char *path_finder(info_t *info, char *pathstr, char *cmd)
 		return (NULL);
 	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
 	{
-		if (check_cmd(info, cmd))
+		if (check_cmd(data, cmd))
 			return (cmd);
 	}
 
@@ -34,7 +34,7 @@ char *path_finder(info_t *info, char *pathstr, char *cmd)
 				_strcat(path, "/");
 				_strcat(path, cmd);
 			}
-			if (check_cmd(info, path))
+			if (check_cmd(data, path))
 				return (path);
 			if (!pathstr[j])
 				break;
@@ -67,16 +67,16 @@ char *char_duplicates(char *pathstr, int start, int stop)
 
 /**
  * check_cmd - executable command or not
- * @info: struct
+ * @data: struct
  * @path: path
  * Return: 1 or 0
  */
 
-int check_cmd(info_t *info, char *path)
+int check_cmd(info_t *data, char *path)
 {
 	struct stat s;
 
-	(void)info;
+	(void)data;
 
 	if (!path || stat(path, &s))
 		return (0);

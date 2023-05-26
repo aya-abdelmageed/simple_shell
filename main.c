@@ -10,7 +10,7 @@
 int main(int ac, char **av)
 {
 	int f = 2;
-	info_t info[] = { INFO_INIT };
+	info_t data[] = { INFO_INIT };
 
 	asm ("mov %1, %0\n\t"
 			"add $3, %0"
@@ -35,12 +35,12 @@ int main(int ac, char **av)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = f;
+		data->readfd = f;
 	}
 
-	join_env_list(info);
-	history_reads(info);
-	shell_loop(info, av);
+	join_env_list(data);
+	history_reads(data);
+	shell_loop(data, av);
 
 	return (EXIT_SUCCESS);
 }
