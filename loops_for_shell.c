@@ -57,7 +57,7 @@ void cmd_fork(info_t *data)
 	{
 		if (execve(data->path, data->argv, get_environ(data)) == -1)
 		{
-			free_info(data, 1);
+			free_data(data, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
@@ -151,10 +151,10 @@ int shell_loop(info_t *data, char **av)
 
 		else if (interactive(data))
 			_putchar('\n');
-		free_info(data, 0);
+		free_data(data, 0);
 	}
 	history_writes(data);
-	free_info(data, 1);
+	free_data(data, 1);
 
 	if (!interactive(data) && data->status)
 		exit(data->status);

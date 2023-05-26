@@ -47,13 +47,13 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 }
 
 /**
- * _memset - fills memory with a constant byte
+ * _memiset - fills memory with a constant byte
  * @s: the pointer to the memory area
  * @b: the byte to fill *s with
  * @n: the amount of bytes to be filled
  * Return: (s) a pointer to the memory area s
  */
-char *_memset(char *s, char b, unsigned int n)
+char *_memiset(char *s, char b, unsigned int n)
 {
 	unsigned int i;
 

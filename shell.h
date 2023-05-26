@@ -189,7 +189,7 @@ void sigintHandler(int);
 
 void data_clear(info_t *);
 void set_data(info_t *, char **);
-void free_info(info_t *, int);
+void free_data(info_t *, int);
 
 
 char *_getenv(info_t *, const char *);
