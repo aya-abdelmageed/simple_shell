@@ -14,53 +14,7 @@ void sigintHandler(__attribute__((unused))int sig_num)
 	_putchar(BUF_FLUSH);
 }
 
-/**
- * get_input - reads input from stdin
- * @data: parameter struct
- *
- * Return: bytes read
- */
-ssize_t get_input(info_t *data)
-{
-	static char *buf;
-	static size_t i, j, len;
-	ssize_t r = 0;
-	char **buf_p = &(data->arg), *p;
 
-	_putchar(BUF_FLUSH);
-	r = input_buf(data, &buf, &len);
-	if (r == -1)
-		return (-1);
-	if (len)
-	{
-		p = buf + i; 
-
-		chain_checker(data, buf, &j, i, len);
-		for (j = i; j < len; j++) 
-			if (buf[j] != ';')
-				break;
-			;
-		while (j < len) 
-		{
-			if (is_chain(data, buf, &j))
-				break;
-			j++;
-		}
-
-		i = j + 1; 
-		if (i >= len)
-		{
-			i = len = 0;
-			data->cmd_buf_type = CMD_NORM;
-		}
-
-		*buf_p = p;
-		return (_strlen(p));
-	}
-
-	*buf_p = buf;
-	return (r);
-}
 
 
 /**
@@ -81,11 +35,11 @@ ssize_t input_buf(info_t *data, char **buf, size_t *len)
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, sigintHandler);
-#if USE_GETLINE
-		r = getline(buf, &len_p, stdin);
-#else
-		r = _getline(data, buf, &len_p);
-#endif
+		#if USE_GETLINE
+				r = getline(buf, &len_p, stdin);
+		#else
+				r = _getline(data, buf, &len_p);
+		#endif
 		if (r > 0)
 		{
 			if ((*buf)[r - 1] == '\n')
@@ -171,4 +125,52 @@ int _getline(info_t *data, char **ptr, size_t *length)
 		*length = s;
 	*ptr = p;
 	return (s);
+}
+
+/**
+ * get_input - reads input from stdin
+ * @data: parameter struct
+ *
+ * Return: bytes read
+ */
+ssize_t get_input(info_t *data)
+{
+	static char *buf;
+	static size_t i, j, len;
+	ssize_t r = 0;
+	char **buf_p = &(data->arg), *p;
+
+	_putchar(BUF_FLUSH);
+	r = input_buf(data, &buf, &len);
+	if (r == -1)
+		return (-1);
+	if (len)
+	{
+		p = buf + i; 
+
+		chain_checker(data, buf, &j, i, len);
+		for (j = i; j < len; j++) 
+			if (buf[j] != ';')
+				break;
+			;
+		while (j < len) 
+		{
+			if (is_chain(data, buf, &j))
+				break;
+			j++;
+		}
+
+		i = j + 1; 
+		if (i >= len)
+		{
+			i = len = 0;
+			data->cmd_buf_type = CMD_NORM;
+		}
+
+		*buf_p = p;
+		return (_strlen(p));
+	}
+
+	*buf_p = buf;
+	return (r);
 }

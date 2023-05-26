@@ -126,7 +126,7 @@ char *get_history_of_file(info_t *data)
 
 	d = _getenv(data, "HOME=");
 
-	if (!dir)
+	if (!d)
 		return (NULL);
 
 	buff = malloc(sizeof(char) * (_strlen(d) + _strlen(HIST_FILE) + 2));
