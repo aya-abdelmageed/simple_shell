@@ -23,9 +23,7 @@ char *num_convert(long int num, int base, int flags)
 		sign = '-';
 
 	}
-	char *lowercase_letters = "0123456789abcdef";
-	char *uppercase_letters = "0123456789ABCDEF";
-	array = flags & CONVERT_LOWERCASE ? lowercase_letters : uppercase_letters;
+	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
     

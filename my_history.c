@@ -28,7 +28,7 @@ int history_build_list(info_t *data, char *buf, int linecount)
 int history_writes(info_t *data)
 {
 	ssize_t d;
-	char *file_name = get_history_file(data);
+	char *file_name = get_history_of_file(data);
 	list_t *p = NULL;
 
 	if (!file_name)
@@ -58,7 +58,7 @@ int history_reads(info_t *data)
 	int j, end = 0, linecount = 0;
 	ssize_t d, rdlen, size = 0;
 	struct stat s;
-	char *buff = NULL, *file_name = get_history_file(data);
+	char *buff = NULL, *file_name = get_history_of_file(data);
 
 	if (!file_name)
 		return (0);

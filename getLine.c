@@ -28,7 +28,7 @@ ssize_t get_input(info_t *data)
 	char **buf_p = &(data->arg), *p;
 
 	_putchar(BUF_FLUSH);
-	r = buf_input(data, &buf, &len);
+	r = input_buf(data, &buf, &len);
 	if (r == -1)
 		return (-1);
 	if (len)
@@ -64,14 +64,14 @@ ssize_t get_input(info_t *data)
 
 
 /**
- * buf_input - reads input from stdin
+ * input_buf - reads input from stdin
  * @data: parameter struct
  * @buf: address of buffer
  * @len: address of len var
  *
  * Return: bytes read
  */
-ssize_t buf_input(info_t *data, char **buf, size_t *len)
+ssize_t input_buf(info_t *data, char **buf, size_t *len)
 {
 	ssize_t r = 0;
 	size_t len_p = 0;
